@@ -1,26 +1,41 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import axios from 'axios';
 
 const Contactus = props => {
+    let nameInputRef = useRef();
+    let emailInputRef = useRef();
+    let commentInputRef = useRef();
+
+    const handleSubmit = () => {
+        let payload = {
+            name: nameInputRef.current.value,
+            email: emailInputRef.current.value,
+            comment: commentInputRef.current.value
+        }
+        console.log({payload})
+        // axios.post("http://localhost:3004/addcomments", payload).then((res) => {
+        //     console.log({res});
+        // });
+    }
     return (
         <>
             <div className='container'>
                 <h2>Contact Us</h2>
                 <div className='row'>
-                    <div class="col-sm-12">
-                        <label for="firstName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="" value=""/>
+                    <div className="col-sm-12">
+                        <label htmlFor="firstName" className="form-label">Name</label>
+                        <input type="text" className="form-control" id="firstName" placeholder="" ref={nameInputRef}/>
                     </div>
-                    <div class="col-sm-12">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="" value="" required/>                 
+                    <div className="col-sm-12">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input type="email" className="form-control" id="email" placeholder="" ref={emailInputRef}/>                 
                     </div>
-                    <div class="col-sm-12">
-                        <label for="comments" class="form-label">Comments</label>
-                        <textarea class="form-control" id="comments"></textarea>
+                    <div className="col-sm-12">
+                        <label htmlFor="comments" className="form-label">Comments</label>
+                        <textarea className="form-control" id="comments"  ref={commentInputRef}></textarea>
                     </div>
                 </div>
-                <button className='btn btn-primary mt-4'>Submit</button>
+                <button className='btn btn-primary mt-4' onClick={handleSubmit}>Submit</button>
             </div>
         </>
     )
