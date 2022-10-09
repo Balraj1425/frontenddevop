@@ -5,14 +5,14 @@ import './View.css'
 const Viewcomments = props => {
     const [data, setData] = useState();
     useEffect(()=>{
-        // axios.get("http://localhost:3001/getdetails")
-        //     .then((res) => {
-        //       console.log({res});
-        //       setData(res.data);
-        //     })
-        //     .catch((err) => {
-        //       console.log("err", err);
-        //     });
+        axios.get("http://13.126.35.248:3001/data/view")
+            .then((res) => {
+              console.log({res});
+              setData(res.data);
+            })
+            .catch((err) => {
+              console.log("err", err);
+            });
     },[])
     return (
         <>
@@ -28,9 +28,9 @@ const Viewcomments = props => {
                     {data && data.map((row)=>{
                         return(
                             <tr>
-                                <td>row.name</td>
-                                <td>row.email</td>
-                                <td>row.comments</td>
+                                <td>{row.Name}</td>
+                                <td>{row.Email}</td>
+                                <td>{row.Comment}</td>
                             </tr>
                         )
                     })}

@@ -13,9 +13,9 @@ const Contactus = props => {
             comment: commentInputRef.current.value
         }
         console.log({payload})
-        // axios.post("http://localhost:3004/addcomments", payload).then((res) => {
-        //     console.log({res});
-        // });
+        axios.post("http://13.126.35.248:3001/data/addData", payload).then((res) => {
+            console.log({res});
+        });
     }
     return (
         <>
